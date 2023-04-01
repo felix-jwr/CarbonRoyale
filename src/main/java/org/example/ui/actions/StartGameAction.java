@@ -1,9 +1,10 @@
 package org.example.ui.actions;
-
+import org.example.game.PlayGame;
 import org.example.ui.screens.CustomScreen;
 import org.example.ui.screens.gameplay.GameplayScreen;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
@@ -46,10 +47,13 @@ public class StartGameAction implements Action {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Render Gameplay Area
-        GameplayScreen gameplayScreen = new GameplayScreen(currentPanel.getGameState());
-        frame.remove(currentPanel);
-        frame.add(gameplayScreen);
-        frame.pack();
+        // Get rid of current frame
+        frame.dispose();
+
+        // Set up gameplay frame
+        EventQueue.invokeLater(() -> {
+            PlayGame movePlayerSprite = new PlayGame();
+            movePlayerSprite.setVisible(true);
+        });
     }
 }

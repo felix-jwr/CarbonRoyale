@@ -1,4 +1,34 @@
 package org.example.game;
 
-public class PlayGame {
+import org.example.ui.formatting.ColorScheme;
+import org.example.ui.formatting.Sizing;
+
+import java.awt.EventQueue;
+import javax.swing.*;
+
+public class PlayGame extends JFrame {
+
+    public PlayGame() {
+        initUI();
+    }
+
+    private void initUI() {
+        add(new GameplayArea());
+
+        setSize(Sizing.WINDOW_DIMENSION);
+        setBackground(ColorScheme.COLOR_FOUR);
+        setResizable(false);
+
+        setTitle("Shooting missiles");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public static void main(String[] args) {
+
+        EventQueue.invokeLater(() -> {
+            PlayGame ex = new PlayGame();
+            ex.setVisible(true);
+        });
+    }
 }

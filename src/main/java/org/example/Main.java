@@ -44,11 +44,17 @@ public class Main {
 
         // Create MainMenuButtons
         Dimension buttonDistance = new Dimension(0, 15);
-        mainPanel.add(Box.createRigidArea(buttonDistance));
-        mainPanel.add(new MainMenuButton("Start", startGameAction));
-        mainPanel.add(Box.createRigidArea(buttonDistance));
-        mainPanel.add(new MainMenuButton("Inventory", inventoryAction));
-        mainPanel.add(Box.createRigidArea(buttonDistance));
-        mainPanel.add(new MainMenuButton("Quit", quitGameAction));
+        mainPanel.add( Box.createRigidArea( buttonDistance ));
+        mainPanel.add( new MainMenuButton("Start", startGameAction) );
+        mainPanel.add( Box.createRigidArea( buttonDistance ));
+        mainPanel.add( new MainMenuButton("Inventory", inventoryAction) );
+        mainPanel.add( Box.createRigidArea( buttonDistance ));
+        mainPanel.add( new MainMenuButton("Quit", quitGameAction) );
+
+        // Show the frame and centre the window
+        mainFrame.add(mainPanel);
+        mainFrame.pack();
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setVisible(true);
     }
 }
