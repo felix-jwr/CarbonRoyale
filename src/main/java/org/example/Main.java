@@ -35,7 +35,7 @@ public class Main {
     private static void createMenuButtons(JFrame mainFrame, MainMenuScreen mainPanel){
         // Create Actions for Buttons
         StartGameAction startGameAction = new StartGameAction(mainFrame, mainPanel);
-        InventoryAction inventoryAction = new InventoryAction();
+        InventoryAction inventoryAction = new InventoryAction(mainFrame, mainPanel);
         QuitGameAction quitGameAction = new QuitGameAction();
 
         // Create MainMenuButtons
