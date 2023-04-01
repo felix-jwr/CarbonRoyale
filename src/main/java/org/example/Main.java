@@ -32,6 +32,7 @@ public class Main {
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
+
     private static void createMenuButtons(JFrame mainFrame, MainMenuScreen mainPanel){
         // Create Actions for Buttons
         StartGameAction startGameAction = new StartGameAction(mainFrame, mainPanel);
@@ -46,5 +47,11 @@ public class Main {
         mainPanel.add( new MainMenuButton("Inventory", inventoryAction) );
         mainPanel.add( Box.createRigidArea( buttonDistance ));
         mainPanel.add( new MainMenuButton("Quit", quitGameAction) );
+
+        // Show the frame and centre the window
+        mainFrame.add(mainPanel);
+        mainFrame.pack();
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setVisible(true);
     }
 }

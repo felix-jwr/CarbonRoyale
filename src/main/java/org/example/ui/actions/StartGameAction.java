@@ -1,8 +1,8 @@
 package org.example.ui.actions;
-import org.example.game.GameplayArea;
-import org.example.ui.screens.landing.MainMenuScreen;
+import org.example.game.PlayGame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
@@ -46,10 +46,13 @@ public class StartGameAction implements Action {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Render Gameplay Area
-        JPanel gameplayArea = new GameplayArea();
-        frame.remove(currentPanel);
-        frame.add(gameplayArea);
-        frame.pack();
+        // Get rid of current frame
+        frame.dispose();
+
+        // Set up gameplay frame
+        EventQueue.invokeLater(() -> {
+            PlayGame movePlayerSprite = new PlayGame();
+            movePlayerSprite.setVisible(true);
+        });
     }
 }
