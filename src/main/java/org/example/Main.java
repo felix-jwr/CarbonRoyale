@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.game.GameState;
 import org.example.ui.MainWindow;
 import org.example.ui.actions.*;
 import org.example.ui.screens.landing.*;
@@ -10,20 +11,14 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
-        MainWindow mainFrame;
-        MainMenuScreen mainPanel;
+        GameState gameState = new GameState();
+        MainWindow mainFrame= new MainWindow();
+        MainMenuScreen mainPanel= new MainMenuScreen(gameState);
 
-        try {
-            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        mainFrame = new MainWindow();
-        mainPanel = new MainMenuScreen();
+        makeInterfaceCrossPlatform();
 
         // Create Carbon Royale Title
-        mainPanel.add( Box.createRigidArea( new Dimension(0, 50) ));
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 50)));
         mainPanel.add(new GameTitleLabel());
         createMenuButtons(mainFrame, mainPanel);
 
@@ -33,10 +28,18 @@ public class Main {
         mainFrame.setVisible(true);
     }
 
-    private static void createMenuButtons(JFrame mainFrame, MainMenuScreen mainPanel){
+    private static void makeInterfaceCrossPlatform() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createMenuButtons(JFrame mainFrame, MainMenuScreen mainPanel) {
         // Create Actions for Buttons
         StartGameAction startGameAction = new StartGameAction(mainFrame, mainPanel);
-        InventoryAction inventoryAction = new InventoryAction();
+        InventoryAction inventoryAction = new InventoryAction(mainFrame, mainPanel);
         QuitGameAction quitGameAction = new QuitGameAction();
 
         // Create MainMenuButtons

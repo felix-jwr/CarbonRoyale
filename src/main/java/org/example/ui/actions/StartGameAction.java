@@ -1,5 +1,7 @@
 package org.example.ui.actions;
 import org.example.game.PlayGame;
+import org.example.ui.screens.CustomScreen;
+import org.example.ui.screens.gameplay.GameplayScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,12 +10,13 @@ import java.beans.PropertyChangeListener;
 
 public class StartGameAction implements Action {
     JFrame frame;
-    JPanel currentPanel;
+    CustomScreen currentPanel;
 
-    public StartGameAction(JFrame frame, JPanel currentPanel) {
+    public StartGameAction(JFrame frame, CustomScreen currentPanel) {
         this.frame = frame;
         this.currentPanel = currentPanel;
     }
+
     @Override
     public Object getValue(String key) {
         return null;
@@ -21,12 +24,10 @@ public class StartGameAction implements Action {
 
     @Override
     public void putValue(String key, Object value) {
-
     }
 
     @Override
     public void setEnabled(boolean b) {
-
     }
 
     @Override

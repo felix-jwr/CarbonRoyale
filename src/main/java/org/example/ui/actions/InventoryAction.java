@@ -1,9 +1,18 @@
 package org.example.ui.actions;
+import org.example.ui.screens.CustomScreen;
+import org.example.ui.screens.inventory.InventoryScreen;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
 public class InventoryAction implements Action {
+    JFrame frame;
+    CustomScreen currentPanel;
+    public InventoryAction(JFrame frame, CustomScreen currentPanel) {
+        this.frame = frame;
+        this.currentPanel = currentPanel;
+    }
     @Override
     public Object getValue(String key) {
         return null;
@@ -36,6 +45,10 @@ public class InventoryAction implements Action {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("This should take you to the inventory screen.");
+        // Render Inventory Screen
+        InventoryScreen inventoryScreen = new InventoryScreen(currentPanel.getGameState());
+        frame.remove(currentPanel);
+        frame.add(inventoryScreen);
+        frame.pack();
     }
 }
