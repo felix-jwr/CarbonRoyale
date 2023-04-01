@@ -1,19 +1,18 @@
-package org.example.ui.screens.inventory;
+package org.example.ui.screens.gameplay;
 
 import org.example.game.GameState;
 import org.example.ui.formatting.ColorScheme;
 import org.example.ui.formatting.Sizing;
 import org.example.ui.screens.CustomScreen;
 
-public class InventoryScreen extends CustomScreen {
-    public InventoryScreen(GameState gameState) {
+public class GameplayScreen extends CustomScreen {
+    public GameplayScreen(GameState gameState) {
         super(gameState);
     }
 
     @Override
     protected void setupScreen() {
-        setBackground(ColorScheme.COLOR_FIVE);
         setSize(Sizing.WINDOW_DIMENSION);
+        setBackground(ColorScheme.COLOR_THREE);
     }
-
 }
