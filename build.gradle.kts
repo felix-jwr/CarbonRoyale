@@ -3,12 +3,6 @@ plugins {
     id("application")
 }
 
-//if (hasProperty("buildScan")) {
-//    extensions.findByName("buildScan")?.withGroovyBuilder {
-//        setProperty("termsOfServiceUrl", "https://gradle.com/terms-of-service")
-//        setProperty("termsOfServiceAgree", "yes")
-//    }
-//}
 val lwjglVersion = "3.3.1"
 val lwjglNatives = "natives-windows"
 
