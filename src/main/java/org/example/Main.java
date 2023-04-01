@@ -1,24 +1,17 @@
 package org.example;
 
-import org.example.ui.actions.InventoryAction;
-import org.example.ui.actions.QuitGameAction;
-import org.example.ui.actions.StartGameAction;
-import org.example.ui.screens.landing.MainMenuButton;
-import org.example.ui.formatting.Sizing;
-import org.example.ui.screens.landing.GameTitleLabel;
-import org.example.ui.screens.landing.MainMenuScreen;
+import org.example.ui.MainWindow;
+import org.example.ui.actions.*;
+import org.example.ui.screens.landing.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
 
 public class Main {
 
     public static void main(String[] args) {
-        JFrame mainFrame;
-        JPanel mainPanel;
+        MainWindow mainFrame;
+        MainMenuScreen mainPanel;
 
         try {
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
@@ -26,20 +19,20 @@ public class Main {
             e.printStackTrace();
         }
 
-        // Create a JFrame
-        mainFrame = new JFrame("Swing Window Example");
-        mainFrame.setSize(Sizing.WINDOW_DIMENSION);
-        mainFrame.setMinimumSize(Sizing.WINDOW_DIMENSION);
-        mainFrame.setMaximumSize(Sizing.WINDOW_DIMENSION);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Make Main Menu
+        mainFrame = new MainWindow();
         mainPanel = new MainMenuScreen();
 
         // Create Carbon Royale Title
         mainPanel.add( Box.createRigidArea( new Dimension(0, 50) ));
         mainPanel.add(new GameTitleLabel());
+        createMenuButtons(mainFrame, mainPanel);
 
+        // Show the frame
+        mainFrame.add(mainPanel);
+        mainFrame.pack();
+        mainFrame.setVisible(true);
+    }
+    private static void createMenuButtons(JFrame mainFrame, MainMenuScreen mainPanel){
         // Create Actions for Buttons
         StartGameAction startGameAction = new StartGameAction(mainFrame, mainPanel);
         InventoryAction inventoryAction = new InventoryAction();
@@ -53,10 +46,5 @@ public class Main {
         mainPanel.add( new MainMenuButton("Inventory", inventoryAction) );
         mainPanel.add( Box.createRigidArea( buttonDistance ));
         mainPanel.add( new MainMenuButton("Quit", quitGameAction) );
-
-        // Show the frame
-        mainFrame.add(mainPanel);
-        mainFrame.pack();
-        mainFrame.setVisible(true);
     }
 }
