@@ -14,6 +14,12 @@ public class Main {
         JFrame mainFrame;
         JPanel mainPanel;
 
+        try {
+            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         // Create a JFrame
         mainFrame = new JFrame("Swing Window Example");
         mainFrame.setSize(Sizing.WINDOW_DIMENSION);
