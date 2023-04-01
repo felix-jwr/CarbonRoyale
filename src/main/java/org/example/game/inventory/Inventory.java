@@ -4,7 +4,7 @@ import org.example.game.items.Item;
 
 import java.util.ArrayList;
 
-public class Inventory {
+public abstract class Inventory {
     private final ArrayList<Item> itemList;
 
     public Inventory() {
