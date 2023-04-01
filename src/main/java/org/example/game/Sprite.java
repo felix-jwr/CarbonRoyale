@@ -1,7 +1,12 @@
 package org.example.game;
 
 import java.awt.Image;
-import javax.swing.ImageIcon;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.sound.midi.SysexMessage;
+import javax.swing.*;
 
 public class Sprite {
     protected int x;
@@ -9,7 +14,7 @@ public class Sprite {
     protected int width;
     protected int height;
     protected boolean visible;
-    protected Image image;
+    protected BufferedImage image;
 
     public Sprite(int x, int y) {
         this.x = x;
@@ -18,8 +23,10 @@ public class Sprite {
     }
 
     protected void loadImage(String imageName) {
-        ImageIcon imageIcon = new ImageIcon(imageName);
-        image = imageIcon.getImage();
+        try {
+            this.image = ImageIO.read(new File(imageName));
+        } catch (IOException e) {
+        }
     }
 
     protected void getImageDimensions() {
@@ -27,7 +34,7 @@ public class Sprite {
         height = image.getHeight(null);
     }
 
-    public Image getImage() {
+    public BufferedImage getImage() {
         return image;
     }
 

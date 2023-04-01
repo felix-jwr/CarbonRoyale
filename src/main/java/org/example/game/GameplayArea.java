@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GameplayArea extends JPanel implements ActionListener {
-
     private final int ICRAFT_X = 40;
     private final int ICRAFT_Y = 60;
     private final int DELAY = 10;

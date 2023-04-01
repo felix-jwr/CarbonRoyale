@@ -17,18 +17,16 @@ public class PlayGame extends JFrame {
 
         setSize(Sizing.WINDOW_DIMENSION);
         setBackground(ColorScheme.COLOR_FOUR);
-        setResizable(false);
 
-        setTitle("Shooting missiles");
+        setTitle("Carbon Royale");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {
-
         EventQueue.invokeLater(() -> {
-            PlayGame ex = new PlayGame();
-            ex.setVisible(true);
+            PlayGame playGame = new PlayGame();
+            playGame.setVisible(true);
         });
     }
 }
