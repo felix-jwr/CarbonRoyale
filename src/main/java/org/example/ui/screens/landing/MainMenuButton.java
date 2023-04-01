@@ -5,9 +5,11 @@ import org.example.ui.formatting.Fonts;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class MainMenuButton extends JButton {
-        public MainMenuButton(String text) {
+        public MainMenuButton(String text, Action action) {
+                setAction(action);
                 setText(text);
                 setBackground(ColorScheme.COLOR_THREE);
                 setAlignmentX(Component.CENTER_ALIGNMENT);
