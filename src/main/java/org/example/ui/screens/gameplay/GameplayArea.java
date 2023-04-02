@@ -50,7 +50,7 @@ public class GameplayArea extends CustomScreen implements ActionListener {
         setFocusable(true);
         ingame = true;
 
-        player = new PlayerIcon(ICRAFT_X, ICRAFT_Y);
+        player = new PlayerIcon(ICRAFT_X, ICRAFT_Y, gameState);
 
         initEnemies();
 
