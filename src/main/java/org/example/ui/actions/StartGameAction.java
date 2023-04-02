@@ -1,7 +1,6 @@
 package org.example.ui.actions;
 import org.example.game.PlayGame;
 import org.example.ui.screens.CustomScreen;
-import org.example.ui.screens.gameplay.GameplayScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +51,7 @@ public class StartGameAction implements Action {
 
         // Set up gameplay frame
         EventQueue.invokeLater(() -> {
-            PlayGame movePlayerSprite = new PlayGame();
+            PlayGame movePlayerSprite = new PlayGame(currentPanel.getGameState());
             movePlayerSprite.setVisible(true);
         });
     }

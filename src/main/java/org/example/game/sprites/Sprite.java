@@ -1,6 +1,6 @@
-package org.example.game;
+package org.example.game.sprites;
 
-import java.awt.Image;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -46,11 +46,23 @@ public class Sprite {
         return y;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public boolean isVisible() {
         return visible;
     }
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
     }
 }
