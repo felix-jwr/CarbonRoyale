@@ -5,7 +5,7 @@ import org.example.game.GameState;
 import javax.swing.*;
 
 public abstract class CustomScreen extends JPanel {
-    private final GameState gameState;
+    protected final GameState gameState;
     public CustomScreen(GameState gameState){
         this.gameState = gameState;
         setupScreen();

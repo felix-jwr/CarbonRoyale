@@ -22,4 +22,5 @@ public abstract class Inventory {
     public Item popItem(int itemIndex) {
         return itemList.remove(itemIndex);
     }
+    public int getSize(){return itemList.size();}
 }
