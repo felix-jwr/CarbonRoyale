@@ -18,7 +18,6 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             gameState.getPassiveInventory().getItemList().add(new Cat());
         }
-        gameState.getActiveInventory().getItemList().add(new Cat());
 
         MainWindow mainFrame = new MainWindow();
         MainMenuScreen mainPanel = new MainMenuScreen(gameState);

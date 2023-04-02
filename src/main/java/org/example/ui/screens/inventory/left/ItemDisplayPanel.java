@@ -1,6 +1,7 @@
 package org.example.ui.screens.inventory.left;
 
 import org.example.game.items.Item;
+import org.example.ui.actions.EquipAction;
 import org.example.ui.formatting.ColorScheme;
 import org.example.ui.screens.inventory.InventoryScreen;
 
@@ -18,7 +19,14 @@ public class ItemDisplayPanel extends JPanel {
         setLayout(gridLayout);
 
         for (int i = 0; i < itemsForDisplay.size(); i++) {
-            add(new ItemDisplayButton(inventoryScreen.getItemOffset() + i, itemsForDisplay.get(i).getImageIcon()));
+            ItemDisplayButton itemDisplayButton = new ItemDisplayButton(inventoryScreen.getItemOffset() + i,
+                    itemsForDisplay.get(i).getImagePath());
+
+            itemDisplayButton.addActionListener(new EquipAction(i, inventoryScreen));
+            itemDisplayButton.setBorder(BorderFactory.createEmptyBorder());
+            itemDisplayButton.setContentAreaFilled(false);
+
+            add(itemDisplayButton);
         }
         for (int i = 0; i < 9 - itemsForDisplay.size(); i++) {
             add(new ItemDisplayButton(-1,null));

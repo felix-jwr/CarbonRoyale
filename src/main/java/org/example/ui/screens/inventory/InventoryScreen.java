@@ -77,4 +77,13 @@ public class InventoryScreen extends CustomScreen {
     public int getItemOffset() {
         return itemOffset;
     }
+
+    public void buttonPressed(int index) {
+        Item currentItem = gameState.getPassiveInventory().popItem(index);
+        gameState.getActiveInventory().getItemList().add(currentItem);
+
+        removeAll();
+        addPanels();
+        mainWindow.pack();
+    }
 }

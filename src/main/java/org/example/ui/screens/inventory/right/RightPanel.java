@@ -1,8 +1,10 @@
 package org.example.ui.screens.inventory.right;
 
+import org.example.Main;
 import org.example.game.GameState;
 import org.example.ui.formatting.ColorScheme;
 import org.example.ui.formatting.Fonts;
+import org.example.ui.screens.landing.MainMenuButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +14,10 @@ public class RightPanel  extends JPanel {
         setBackground(ColorScheme.COLOR_FOUR);
         setBounds(575, 0, 300, 450);
 
+        setupLeafCounter(gameState);
+        }
+
+    public void setupLeafCounter(GameState gameState) {
         int leafCount = gameState.getLeafCount();
         String message = "Leaf Count: " + String.valueOf(leafCount);
         JLabel leafCountDisplay = new JLabel(message);
