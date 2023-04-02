@@ -1,15 +1,20 @@
 package org.example.ui.screens.gameplay;
 
+import org.example.game.inventory.Leaf;
 import org.example.game.sprites.Enemy;
 import org.example.game.sprites.FireBullet;
 import org.example.game.GameState;
 import org.example.game.sprites.PlayerIcon;
 import org.example.ui.MainWindow;
+import org.example.ui.actions.InventoryAction;
+import org.example.ui.actions.QuitGameAction;
+import org.example.ui.actions.StartGameAction;
 import org.example.ui.formatting.ColorScheme;
 import org.example.ui.formatting.Fonts;
 import org.example.ui.formatting.Sizing;
 import org.example.ui.screens.CustomScreen;
 import org.example.ui.screens.landing.GameTitleLabel;
+import org.example.ui.screens.landing.MainMenuButton;
 import org.example.ui.screens.landing.MainMenuScreen;
 
 import java.awt.*;
@@ -121,42 +126,60 @@ public class GameplayArea extends CustomScreen implements ActionListener {
         (Sizing.WINDOW_HEIGHT / 2));
     }
 
+    private static void makeInterfaceCrossPlatform() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createLootMenuButtons(JFrame mainFrame, MainMenuScreen mainPanel) {
+        // Create Actions for Buttons
+        InventoryAction inventoryAction = new InventoryAction(mainFrame, mainPanel);
+        QuitGameAction quitGameAction = new QuitGameAction();
+
+        // Create MainMenuButtons
+        Dimension buttonDistance = new Dimension(0, 15);
+        mainPanel.add( Box.createRigidArea( buttonDistance ));
+        mainPanel.add( new MainMenuButton("Inventory", inventoryAction) );
+        mainPanel.add( Box.createRigidArea( buttonDistance ));
+        mainPanel.add( new MainMenuButton("Quit", quitGameAction) );
+
+        // Show the frame and centre the window
+        mainFrame.add(mainPanel);
+        mainFrame.pack();
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setVisible(true);
+    }
     private void drawWin() {
         // Get rid of old frame
         JFrame frame = (JFrame) getTopLevelAncestor();
         frame.dispose();
 
-//        JFrame newFrame = new JFrame();
-//
-//        newFrame.setMinimumSize(Sizing.WINDOW_DIMENSION);
-//        newFrame.setMinimumSize(Sizing.WINDOW_DIMENSION);
-//        Loot lootScreen = new Loot(getGameState());
-//
-//        // Create Carbon Royale Title
-//        lootScreen.add(Box.createRigidArea(new Dimension(0, 50)));
-//        LootTitleLabel lootTitleLabel = new LootTitleLabel();
-//        lootTitleLabel.setAlignmentX(400);
-//        lootScreen.add(lootTitleLabel);
-//
-//        newFrame.add(lootScreen);
-//        newFrame.pack();
-//        newFrame.setLocationRelativeTo(null);
-//        newFrame.setVisible(true);
-//
-        MainWindow newFrame = new MainWindow();
-        Loot lootPanel = new Loot(getGameState());
+        MainWindow mainFrame = new MainWindow();
+        MainMenuScreen mainPanel = new MainMenuScreen(gameState);
 
-//        makeInterfaceCrossPlatform();
+        makeInterfaceCrossPlatform();
 
-        // Create Carbon Royale Title
-        lootPanel.add(Box.createRigidArea(new Dimension(0, 50)));
-        lootPanel.add(new GameTitleLabel());
-//        createMenuButtons(mainFrame, mainPanel);
+        // Create Loot Get Title
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 50)));
+        GameTitleLabel lootTitle = new GameTitleLabel();
+        lootTitle.setText("Loot get!! :)");
+        mainPanel.add(lootTitle);
+
+        // Tells player how much they won
+        int leavesMultiplier = ThreadLocalRandom.current().nextInt(1, 2);
+        gameState.addLeaves(leavesMultiplier * kills);
+
+        // Adds the buttons to return to the inventory or quit
+        createLootMenuButtons(mainFrame, mainPanel);
 
         // Show the frame
-        newFrame.add(lootPanel);
-        newFrame.pack();
-        newFrame.setVisible(true);
+        mainFrame.add(mainPanel);
+        mainFrame.pack();
+        mainFrame.setVisible(true);
+        mainFrame.setResizable(false);
     }
 
     @Override

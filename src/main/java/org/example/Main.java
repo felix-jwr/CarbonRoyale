@@ -55,6 +55,7 @@ public class Main {
         mainFrame.add(mainPanel);
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
+        mainFrame.setResizable(false);
         mainFrame.setVisible(true);
     }
 }
