@@ -41,7 +41,7 @@ public class InventoryScreen extends CustomScreen {
     private void addPanels() {
         leftPanel = new LeftPanel(this);
         middlePanel = new MiddlePanel();
-        rightPanel = new RightPanel();
+        rightPanel = new RightPanel(gameState);
         add(leftPanel);
         add(middlePanel);
         add(rightPanel);
