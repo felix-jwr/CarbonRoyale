@@ -1,5 +1,7 @@
 package org.example.game.items;
 
-public interface Item {
+import javax.swing.*;
 
+public interface Item {
+public ImageIcon getImageIcon();
 }

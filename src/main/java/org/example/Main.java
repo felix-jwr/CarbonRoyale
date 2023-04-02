@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.game.GameState;
+import org.example.game.items.Cat;
 import org.example.ui.MainWindow;
 import org.example.ui.actions.*;
 import org.example.ui.screens.landing.*;
@@ -12,6 +13,9 @@ public class Main {
 
     public static void main(String[] args) {
         GameState gameState = new GameState();
+        for (int i = 0; i < 10; i++) {
+            gameState.getPassiveInventory().addItem(new Cat());
+        }
         MainWindow mainFrame= new MainWindow();
         MainMenuScreen mainPanel= new MainMenuScreen(gameState);
 
