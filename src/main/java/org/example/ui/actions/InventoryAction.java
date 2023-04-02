@@ -46,7 +46,7 @@ public class InventoryAction implements Action {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Render Inventory Screen
-        InventoryScreen inventoryScreen = new InventoryScreen(currentPanel.getGameState());
+        InventoryScreen inventoryScreen = new InventoryScreen(currentPanel.getGameState(), frame);
         frame.remove(currentPanel);
         frame.add(inventoryScreen);
         frame.pack();

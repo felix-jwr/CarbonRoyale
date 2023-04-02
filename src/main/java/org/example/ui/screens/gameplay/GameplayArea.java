@@ -1,5 +1,6 @@
 package org.example.ui.screens.gameplay;
 
+import org.example.game.inventory.Leaf;
 import org.example.game.sprites.Enemy;
 import org.example.game.sprites.FireBullet;
 import org.example.game.GameState;
@@ -7,6 +8,7 @@ import org.example.game.sprites.PlayerIcon;
 import org.example.ui.MainWindow;
 import org.example.ui.actions.InventoryAction;
 import org.example.ui.actions.QuitGameAction;
+import org.example.ui.actions.StartGameAction;
 import org.example.ui.formatting.ColorScheme;
 import org.example.ui.formatting.Fonts;
 import org.example.ui.formatting.Sizing;
@@ -20,17 +22,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.text.Element;
-import javax.swing.text.html.ImageView;
 
 public class GameplayArea extends CustomScreen implements ActionListener {
     private final int ICRAFT_X = 40;
@@ -54,7 +50,7 @@ public class GameplayArea extends CustomScreen implements ActionListener {
         setFocusable(true);
         ingame = true;
 
-        player = new PlayerIcon(ICRAFT_X, ICRAFT_Y, gameState);
+        player = new PlayerIcon(ICRAFT_X, ICRAFT_Y);
 
         initEnemies();
 
@@ -149,67 +145,6 @@ public class GameplayArea extends CustomScreen implements ActionListener {
         mainPanel.add( new MainMenuButton("Inventory", inventoryAction) );
         mainPanel.add( Box.createRigidArea( buttonDistance ));
         mainPanel.add( new MainMenuButton("Quit", quitGameAction) );
-        mainPanel.add( Box.createRigidArea( buttonDistance ));
-
-        // conk
-        JFrame conkcreetFrame = new JFrame("DAS CONK CREET BAY BEEEEEEEE");
-        JPanel conkpanel = new JPanel();
-        JButton quit2 = new JButton("Quit2");
-        BufferedImage conkcreet = null;
-
-        try {
-            conkcreet = ImageIO.read(new File("src/resources/conkcreet.jpg"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        Image scaledImage = conkcreet.getScaledInstance(200, 200, Image.SCALE_FAST);
-        JLabel picLabel = new JLabel(new ImageIcon(scaledImage));
-        conkpanel.add(picLabel);
-        quit2.setMaximumSize( new Dimension(300, 20) );
-        quit2.setAction(new Action() {
-            @Override
-            public Object getValue(String key) {
-                return null;
-            }
-
-            @Override
-            public void putValue(String key, Object value) {
-
-            }
-
-            @Override
-            public void setEnabled(boolean b) {
-
-            }
-
-            @Override
-            public boolean isEnabled() {
-                return false;
-            }
-
-            @Override
-            public void addPropertyChangeListener(PropertyChangeListener listener) {
-
-            }
-
-            @Override
-            public void removePropertyChangeListener(PropertyChangeListener listener) {
-
-            }
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                conkcreetFrame.dispose();
-            }
-        }); // make quit2 quit 2
-        conkpanel.add( quit2);
-
-        // Show the conk
-        conkcreetFrame.add(conkpanel);
-        conkcreetFrame.pack();
-        conkcreetFrame.setVisible(true);
-        conkcreetFrame.setResizable(false);
 
         // Show the frame and centre the window
         mainFrame.add(mainPanel);
@@ -234,19 +169,8 @@ public class GameplayArea extends CustomScreen implements ActionListener {
         mainPanel.add(lootTitle);
 
         // Tells player how much they won
-        // Calc it
         int leavesMultiplier = ThreadLocalRandom.current().nextInt(1, 2);
-        int leafCount = leavesMultiplier * kills;
-        gameState.addLeaves(leafCount);
-
-        // Display it
-        mainPanel.add(lootTitle);
-        String message = "YOu gained %d leaves!! wowow! vry rich man! (I am losing my mind)".formatted(leafCount);
-        JLabel leavesGained = new JLabel(message);
-        leavesGained.setFont(new Font(Font.DIALOG,  Font.PLAIN, 15));
-        leavesGained.setForeground(ColorScheme.COLOR_FOUR);
-        leavesGained.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mainPanel.add(leavesGained);
+        gameState.addLeaves(leavesMultiplier * kills);
 
         // Adds the buttons to return to the inventory or quit
         createLootMenuButtons(mainFrame, mainPanel);

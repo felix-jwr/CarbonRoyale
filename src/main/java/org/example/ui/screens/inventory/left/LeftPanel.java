@@ -1,15 +1,17 @@
 package org.example.ui.screens.inventory.left;
 
+import org.example.game.items.Item;
 import org.example.ui.screens.inventory.InventoryScreen;
 
 import javax.swing.*;
+import java.util.List;
 
 public class LeftPanel extends JPanel {
     private final ItemDisplayPanel itemDisplayPanel;
     private final ArrowHolder arrowHolder;
 
     public LeftPanel(InventoryScreen inventoryScreen) {
-        itemDisplayPanel = new ItemDisplayPanel();
+        itemDisplayPanel = new ItemDisplayPanel(inventoryScreen);
         arrowHolder = new ArrowHolder(inventoryScreen);
         add(itemDisplayPanel);
         add(arrowHolder);

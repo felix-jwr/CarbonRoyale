@@ -1,7 +1,5 @@
 package org.example.game.sprites;
 
-import org.example.game.GameState;
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,16 +9,13 @@ public class PlayerIcon extends Sprite {
     private int dy;
     private List<FireBullet> bullets;
 
-    public PlayerIcon(int x, int y, GameState gameState) {
+    public PlayerIcon(int x, int y) {
         super(x, y);
-        setupPlayer(gameState);
+        setupPlayer();
     }
 
-    private void setupPlayer(GameState gameState) {
+    private void setupPlayer() {
         bullets = new ArrayList<>();
-//        if (gameState.getActiveInventory().getItemList().contains()) {
-//
-//        }
         loadImage("src/resources/player.png");
         getImageDimensions();
     }

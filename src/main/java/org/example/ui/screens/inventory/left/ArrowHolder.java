@@ -13,7 +13,7 @@ public class ArrowHolder extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         leftArrow = new ArrowButton("src/resources/arrow_left.png");
         rightArrow = new ArrowButton("src/resources/arrow_right.png");
-        leftArrow.addActionListener(new LeftArrowAction());
+        leftArrow.addActionListener(new LeftArrowAction(inventoryScreen));
         rightArrow.addActionListener(new RightArrowAction(inventoryScreen));
         add(leftArrow);
         add(rightArrow);
