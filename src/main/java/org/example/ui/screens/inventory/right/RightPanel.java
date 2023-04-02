@@ -19,7 +19,7 @@ public class RightPanel  extends JPanel {
 
     public void setupLeafCounter(GameState gameState) {
         int leafCount = gameState.getLeafCount();
-        String message = "Leaf Count: " + String.valueOf(leafCount);
+        String message = "Leaf Count: " + leafCount;
         JLabel leafCountDisplay = new JLabel(message);
         leafCountDisplay.setFont(new Font(Font.DIALOG,  Font.PLAIN, 15));
         leafCountDisplay.setForeground(ColorScheme.COLOR_FIVE);

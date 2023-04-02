@@ -10,7 +10,6 @@ import javax.swing.*;
 public class MainMenuScreen extends CustomScreen {
     public MainMenuScreen(GameState gameState) {
         super(gameState);
-
     }
 
     @Override

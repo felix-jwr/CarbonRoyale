@@ -4,7 +4,7 @@ import org.example.ui.formatting.Sizing;
 
 import javax.swing.*;
 
-public class MainWindow  extends JFrame {
+public class MainWindow extends JFrame {
     public MainWindow(){
         setTitle("Carbon Royale");
         setSize(Sizing.WINDOW_DIMENSION);
