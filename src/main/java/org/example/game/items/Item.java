@@ -4,4 +4,5 @@ import javax.swing.*;
 
 public interface Item {
 public ImageIcon getImageIcon();
+public String getImagePath();
 }

@@ -22,10 +22,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class GameplayArea extends CustomScreen implements ActionListener {
@@ -170,7 +174,29 @@ public class GameplayArea extends CustomScreen implements ActionListener {
 
         // Tells player how much they won
         int leavesMultiplier = ThreadLocalRandom.current().nextInt(1, 2);
-        gameState.addLeaves(leavesMultiplier * kills);
+        int leavesCount = leavesMultiplier * kills;
+        gameState.addLeaves(leavesCount);
+        String msg = "YOu got +%d leaves!! wowowow! vry rich !! (I'ma losing my mind)".formatted(leavesCount);
+        JLabel leavesMsg = new JLabel(msg);
+        leavesMsg.setForeground(ColorScheme.COLOR_FOUR);
+        leavesMsg.setFont(new Font(Font.DIALOG, Font.PLAIN, 15));
+        leavesMsg.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(leavesMsg);
+
+        // Conkcreet
+        JFrame conkcreetFrame = new JFrame();
+        BufferedImage conkImage = null;
+        try {
+            conkImage = ImageIO.read(new File("src/resources/conkcreet.jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Image scaledConk = conkImage.getScaledInstance(200, 200, Image.SCALE_FAST);
+        JLabel conkPic = new JLabel(new ImageIcon(scaledConk));
+        conkcreetFrame.add(conkPic);
+        conkcreetFrame.pack();
+        conkcreetFrame.setVisible(true);
+        conkcreetFrame.setResizable(false);
 
         // Adds the buttons to return to the inventory or quit
         createLootMenuButtons(mainFrame, mainPanel);
